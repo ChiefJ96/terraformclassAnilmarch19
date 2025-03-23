@@ -16,7 +16,7 @@ resource "aws_vpc" "main_vpc" {
 resource "aws_subnet" "main_subnet" {
   vpc_id            = aws_vpc.main_vpc.id
   cidr_block        = var.subnet_cidr
-  availability_zone = var.availability_zones[0] # Picks the first AZ
+  availability_zone = var.availability_zones[0] # first AZ
 
   tags = {
     Name = "MySubnet"
@@ -34,7 +34,7 @@ resource "aws_security_group" "main_sg" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"] # Open to everyone (not safe for production)
+      cidr_blocks = ["0.0.0.0/0"] 
     }
   }
 
