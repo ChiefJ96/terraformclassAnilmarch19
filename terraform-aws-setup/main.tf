@@ -45,13 +45,13 @@ resource "aws_security_group" "main_sg" {
 
 # Create an EC2 instance
 resource "aws_instance" "main_instance" {
-  ami             = "ami-08b5b3a93ed654d19" # Ubuntu 22.04 LTS (us-east-1)
-  instance_type   = "t2.micro"
-  subnet_id       = aws_subnet.main_subnet.id
-  security_groups = [aws_security_group.main_sg.name]
-  key_name        = var.key_pair_name
+  ami                    = "ami-08b5b3a93ed654d19"
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.main_subnet.id
+  vpc_security_group_ids = [aws_security_group.main_sg.id]  # corrected after Anils explanation
+  key_name               = var.key_pair_name
 
   tags = {
-    Name = "MyServer"
+    Name = "MyUbuntuServer"
   }
 }
